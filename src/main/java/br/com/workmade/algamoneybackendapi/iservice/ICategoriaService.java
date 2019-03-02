@@ -8,5 +8,7 @@ public interface ICategoriaService {
 	
 	Categoria findById(Long id);
 	List<Categoria> findAll();
+	Categoria save(Categoria categoria);
+	Categoria update(Categoria categoria);
 
 }
