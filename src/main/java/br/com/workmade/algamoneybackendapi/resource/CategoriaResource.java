@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ public class CategoriaResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Categoria> salvarCategoria(@RequestBody Categoria categoria, HttpServletResponse response) {
+	public ResponseEntity<Categoria> salvarCategoria(@RequestBody @Valid Categoria categoria, HttpServletResponse response) {
 		Categoria save = this.catService.save(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}").buildAndExpand(save.getCodigo())
 				.toUri();
@@ -47,7 +48,7 @@ public class CategoriaResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(save);
 	}
 	@RequestMapping(method= RequestMethod.PUT)
-	public ResponseEntity<Categoria> atualizarCategoria(@RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> atualizarCategoria(@RequestBody @Valid Categoria categoria){
 		Categoria save = this.catService.update(categoria);
 		 return ResponseEntity.ok().body(save);
 	}

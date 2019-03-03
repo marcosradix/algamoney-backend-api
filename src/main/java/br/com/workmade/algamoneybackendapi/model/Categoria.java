@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long codigo;
+	@NotNull(message="O nome não pode vazio.")
 	private String nome;
 
 }
