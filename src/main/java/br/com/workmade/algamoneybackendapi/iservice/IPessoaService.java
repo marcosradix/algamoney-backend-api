@@ -10,5 +10,7 @@ public interface IPessoaService {
 	List<Pessoa> findAll();
 	Pessoa save(Pessoa pessoa);
 	Pessoa update(Pessoa pessoa);
+	void deleteById(Long id);
+	Pessoa atualizarPropriedadeAtivo(Long id, Boolean isAtivo);
 
 }

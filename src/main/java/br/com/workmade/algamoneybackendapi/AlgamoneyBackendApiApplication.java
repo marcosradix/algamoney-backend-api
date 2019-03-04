@@ -9,4 +9,6 @@ public class AlgamoneyBackendApiApplication {
 
 		SpringApplication.run(AlgamoneyBackendApiApplication.class, args);
 	}
+	
+	
 }

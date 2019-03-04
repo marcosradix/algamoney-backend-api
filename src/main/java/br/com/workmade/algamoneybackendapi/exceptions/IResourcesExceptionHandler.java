@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 public interface IResourcesExceptionHandler {
@@ -13,4 +14,5 @@ public interface IResourcesExceptionHandler {
 	
 	public ResponseEntity<StandardError> unrecognizedPropertyException(HttpMessageNotReadableException e, HttpServletRequest request);
 	public ResponseEntity<MethodArgumentNotValidExceptionErro> methodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request);
+	public ResponseEntity<StandardError> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, HttpServletRequest request);
 }

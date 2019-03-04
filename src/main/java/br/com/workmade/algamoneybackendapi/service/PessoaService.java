@@ -53,4 +53,23 @@ public class PessoaService implements IPessoaService{
 		}
 		return this.pesRepo.save(pessoa);
 	}
+
+	@Override
+	public void deleteById(Long id) {
+		this.findById(id);
+		this.pesRepo.delete(id);
+	}
+	@Override
+	public Pessoa atualizarPropriedadeAtivo(Long id, Boolean isAtivo) {
+		Pessoa pessoaEncontrada = this.findById(id);
+		pessoaEncontrada.setIsAtivo(isAtivo);
+		return this.pesRepo.save(pessoaEncontrada);
+	}
+	
+	
+	
 }
+
+
+
+
