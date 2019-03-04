@@ -79,6 +79,12 @@ public class ResourcesExceptionHandler implements IResourcesExceptionHandler{
 		StandardError error = new StandardError(HttpStatus.METHOD_NOT_ALLOWED.value(), "O verbo HTTP informado não é suportado pelo endpoint, ou falta parâmetro de URL", System.currentTimeMillis());
 		return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(error);
 	}
+	@ExceptionHandler(PessoaInativaException.class)
+	@Override
+	public ResponseEntity<StandardError> pessoaInativaException(PessoaInativaException e, HttpServletRequest request) {
+		StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage(), System.currentTimeMillis());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
 
 }
 

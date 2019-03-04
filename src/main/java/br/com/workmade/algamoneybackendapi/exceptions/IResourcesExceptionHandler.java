@@ -15,4 +15,5 @@ public interface IResourcesExceptionHandler {
 	public ResponseEntity<StandardError> unrecognizedPropertyException(HttpMessageNotReadableException e, HttpServletRequest request);
 	public ResponseEntity<MethodArgumentNotValidExceptionErro> methodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request);
 	public ResponseEntity<StandardError> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException e, HttpServletRequest request);
+	public ResponseEntity<StandardError> pessoaInativaException(PessoaInativaException e, HttpServletRequest request);
 }

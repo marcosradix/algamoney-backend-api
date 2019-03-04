@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.workmade.algamoneybackendapi.exceptions.ObjectNotFoundException;
 import br.com.workmade.algamoneybackendapi.exceptions.ObjectSaveUpdateException;
+import br.com.workmade.algamoneybackendapi.exceptions.PessoaInativaException;
 import br.com.workmade.algamoneybackendapi.iservice.ILancamentoService;
 import br.com.workmade.algamoneybackendapi.model.Categoria;
 import br.com.workmade.algamoneybackendapi.model.Lancamento;
@@ -16,6 +17,8 @@ import br.com.workmade.algamoneybackendapi.repository.LancamentoRepository;
 
 @Service
 public class LancamentoService implements ILancamentoService{
+
+	private static final String USUARIO_INATIVO = " Não é possível salvar lançamento para um usuário inativo.";
 
 	@Autowired
 	private LancamentoRepository lancRepo;
@@ -46,8 +49,11 @@ public class LancamentoService implements ILancamentoService{
 			ObjectSaveUpdateException(
 					"Você não deve passar um id para salvar uma lançamento : "+ Lancamento.class.getName()); 
 		}
-		Categoria categoria = this.catService.findById(lancamento.getCategoria().getCodigo());
 		Pessoa pessoa = this.pesService.findById(lancamento.getPessoa().getCodigo());
+		Categoria categoria = this.catService.findById(lancamento.getCategoria().getCodigo());
+		if(!pessoa.getIsAtivo()) {
+			throw new PessoaInativaException(USUARIO_INATIVO + Pessoa.class.getName());
+		}
 		lancamento.setCategoria(categoria);
 		lancamento.setPessoa(pessoa);
 		return this.lancRepo.save(lancamento);
