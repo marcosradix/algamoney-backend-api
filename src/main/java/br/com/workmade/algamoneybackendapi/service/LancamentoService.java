@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import br.com.workmade.algamoneybackendapi.exceptions.ObjectNotFoundException;
 import br.com.workmade.algamoneybackendapi.exceptions.ObjectSaveUpdateException;
 import br.com.workmade.algamoneybackendapi.iservice.ILancamentoService;
+import br.com.workmade.algamoneybackendapi.model.Categoria;
 import br.com.workmade.algamoneybackendapi.model.Lancamento;
+import br.com.workmade.algamoneybackendapi.model.Pessoa;
 import br.com.workmade.algamoneybackendapi.repository.LancamentoRepository;
 
 @Service
@@ -17,6 +19,12 @@ public class LancamentoService implements ILancamentoService{
 
 	@Autowired
 	private LancamentoRepository lancRepo;
+	
+	@Autowired
+	private PessoaService pesService;
+	
+	@Autowired
+	private CategoriaService catService;
 	
 	@Override
 	public Lancamento findById(Long id) {
@@ -38,6 +46,10 @@ public class LancamentoService implements ILancamentoService{
 			ObjectSaveUpdateException(
 					"Você não deve passar um id para salvar uma lançamento : "+ Lancamento.class.getName()); 
 		}
+		Categoria categoria = this.catService.findById(lancamento.getCategoria().getCodigo());
+		Pessoa pessoa = this.pesService.findById(lancamento.getPessoa().getCodigo());
+		lancamento.setCategoria(categoria);
+		lancamento.setPessoa(pessoa);
 		return this.lancRepo.save(lancamento);
 	}
 
