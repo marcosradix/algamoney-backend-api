@@ -1,12 +1,12 @@
 package br.com.workmade.algamoneybackendapi.resource;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.workmade.algamoneybackendapi.event.CreateResourceEvent;
 import br.com.workmade.algamoneybackendapi.model.Lancamento;
+import br.com.workmade.algamoneybackendapi.repository.filter.LancamentoFilter;
 import br.com.workmade.algamoneybackendapi.service.LancamentoService;
 
 @RestController
@@ -36,10 +37,11 @@ public class LancamentoResource {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Lancamento>> listarLancamentos(){
-		List<Lancamento> findAll = this.lancService.findAll();
+	public ResponseEntity<Page<Lancamento>> filtrarLancamentos(LancamentoFilter lancamentoFilter, Pageable  pageable ){
+		Page<Lancamento> findAll = this.lancService.findByQuery(lancamentoFilter, pageable);
 		return  ResponseEntity.ok(findAll);
 	}
+	
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Lancamento> salvarLancamento(@RequestBody @Valid Lancamento lancamento, HttpServletResponse response) {
@@ -52,5 +54,11 @@ public class LancamentoResource {
 		lancamento.setCodigo(id);
 		Lancamento save = this.lancService.update(lancamento);
 		 return ResponseEntity.ok().body(save);
+	}
+	
+	@RequestMapping(method= RequestMethod.DELETE, value="/{id}")
+	public ResponseEntity<Void> deletarPessoa(@PathVariable Long id) {
+			this.lancService.deleteById(id);
+		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}
 }

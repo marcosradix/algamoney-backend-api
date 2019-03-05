@@ -30,3 +30,54 @@ values ("Produtos da farmácia", "2018-01-11","2018-01-11",500.00,"pagamento efe
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
 values ("Pneu furado", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",5, 1);
 
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Top club", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",1, 1);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Almoço de sábado", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",2, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Feira do mês", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",3, 3);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Produtos da farmácia", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",4, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Pneu furado", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",5, 1);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Top club", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",1, 1);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Almoço de sábado", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",2, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Feira do mês", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",3, 3);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Produtos da farmácia", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",4, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Pneu furado", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",5, 1);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Top club", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",1, 1);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Almoço de sábado", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",2, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Feira do mês", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",3, 3);
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Produtos da farmácia", "2018-01-11","2018-01-11",500.00,"pagamento efetuado","DESPESA",4, 2);
+
+
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo_lancamento, codigo_categoria, codigo_pessoa)
+values ("Pneu furado", "2018-01-10","2018-01-10",6500.00,"pagamento efetuado","RECEITA",5, 1);
+
