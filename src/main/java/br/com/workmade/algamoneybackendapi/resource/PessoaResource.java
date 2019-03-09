@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,37 +31,41 @@ public class PessoaResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
 	@GetMapping(value="/{id}")
 	public ResponseEntity<Pessoa> buscarPessoa(@PathVariable Long id){
 		Pessoa cat = pesService.findById(id);
 		return ResponseEntity.ok(cat);
 	}
 	
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
 	@GetMapping
 	public ResponseEntity<List<Pessoa>> listarPessoas(){
 		List<Pessoa> findAll = this.pesService.findAll();
 		return  ResponseEntity.ok(findAll);
 	}
-	
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Pessoa> salvarPessoa(@RequestBody @Valid Pessoa pessoa, HttpServletResponse response) {
 		Pessoa save = this.pesService.save(pessoa);
 		this.publisher.publishEvent(new CreateResourceEvent(this, response, save.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(save);
 	}
+	
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
 	@RequestMapping(method= RequestMethod.PUT, value="/{id}")
 	public ResponseEntity<Pessoa> atualizarPessoa(@RequestBody @Valid Pessoa pessoa, @PathVariable Long id){
 		pessoa.setCodigo(id);
 		Pessoa save = this.pesService.update(pessoa);
 		 return ResponseEntity.ok().body(save);
 	}
-	
+	@PreAuthorize("hasAuthority('ROLE_CADASTRAR_PESSOA')")
 	@RequestMapping(method= RequestMethod.PUT, value="/{id}/ativo")
 	public ResponseEntity<Void> atualizarPessoaParcial(@RequestBody Boolean isAtivo, @PathVariable Long id){
 		 this.pesService.atualizarPropriedadeAtivo(id, isAtivo);
 		 return ResponseEntity.noContent().build();
 	}
-	
+	@PreAuthorize("hasAuthority('ROLE_REMOVER_PESSOA')")
 	@RequestMapping(method= RequestMethod.DELETE, value="/{id}")
 	public ResponseEntity<Void> deletarPessoa(@PathVariable Long id) {
 			this.pesService.deleteById(id);

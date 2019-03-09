@@ -19,3 +19,6 @@ curso spring boot com angular
 # 
 ![Screenshot](api_request/refresh_token/headers.png)
 
+# logout
+![Screenshot](api_request/logout/authorization.png)
+
