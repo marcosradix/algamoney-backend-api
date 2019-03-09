@@ -9,15 +9,15 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
-import org.springframework.security.oauth2.provider.token.AccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+	private static final String REFRESH_TOKEN = "refresh_token";
 
 	private static final String GRANT_TYPE_PASSWORD = "password";
 
@@ -39,6 +39,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Value(value = "${expire.time.token}")
 	private Integer expireTimeToken;
 	
+	private Integer expireTimeRefreshToken= 3600 * 24;
+	
 	@Value(value = "${validation.token.secret}")
 	private String validationTokenSecret;
 	
@@ -47,8 +49,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		clients.inMemory().withClient(this.nameClientApplication)
 	    .secret(this.secretClientPassword)
 	    .scopes(this.readScope, this.writeScope)
-	    .authorizedGrantTypes(GRANT_TYPE_PASSWORD)
-	    .accessTokenValiditySeconds(this.expireTimeToken);
+	    .authorizedGrantTypes(GRANT_TYPE_PASSWORD, REFRESH_TOKEN)
+	    .accessTokenValiditySeconds(this.expireTimeToken)
+	    .refreshTokenValiditySeconds(expireTimeRefreshToken)
+	    .and()
+	    .withClient("mobile")
+	    .secret("t35t3")
+	    .scopes(this.readScope)
+	    .authorizedGrantTypes(GRANT_TYPE_PASSWORD, REFRESH_TOKEN)
+	    .accessTokenValiditySeconds(this.expireTimeToken)
+	    .refreshTokenValiditySeconds(expireTimeRefreshToken);
+	    
+	    
 		
 	}
 	
@@ -56,6 +68,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.tokenStore(tokenStore())
 		.accessTokenConverter(accessTokenConverter())
+		.reuseRefreshTokens(false)
 		.authenticationManager(this.authenticationManager);
 	}
 
