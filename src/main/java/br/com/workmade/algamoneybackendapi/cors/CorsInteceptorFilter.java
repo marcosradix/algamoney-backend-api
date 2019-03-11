@@ -34,15 +34,12 @@ public class CorsInteceptorFilter implements Filter{
 		if(ambiente == null) {
 			return this.deseOriginPermitida;
 		}
-		switch (ambiente) {
-		case "dese":
-			return this.deseOriginPermitida;
-		case "homol":
-			return this.homolOriginPermitida;
-		case "prod":
-			return this.prodOriginPermitida;
-		default:
-			break;
+		switch (ambiente) 
+		{
+		case "dese":return this.deseOriginPermitida;
+		case "homol":return this.homolOriginPermitida;
+		case "prod":return this.prodOriginPermitida;
+		default:break;
 		}
 		return this.deseOriginPermitida;
 	}
