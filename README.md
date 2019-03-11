@@ -22,3 +22,20 @@ curso spring boot com angular
 # logout
 ![Screenshot](api_request/logout/authorization.png)
 
+#swagger
+
+![Screenshot](api_request/doc/swagger/1.png)
+
+#
+![Screenshot](api_request/doc/swagger/2.png)
+
+#
+![Screenshot](api_request/doc/swagger/3.png)
+
+#
+![Screenshot](api_request/doc/swagger/4.png)
+
+#
+![Screenshot](api_request/doc/swagger/5.png)
+
+

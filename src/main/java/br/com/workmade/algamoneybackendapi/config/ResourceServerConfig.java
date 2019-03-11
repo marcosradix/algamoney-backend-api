@@ -33,7 +33,7 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter{
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	/* "/v2/api-docs" json do swagger com informações da api*/
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
